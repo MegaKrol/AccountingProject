@@ -1,0 +1,49 @@
+﻿using Microsoft.EntityFrameworkCore.Internal;
+using WeaponAccountingProject.Data;
+using WeaponAccountingProject.Interfaces;
+using WeaponAccountingProject.Models;
+
+namespace WeaponAccountingProject.Repository
+{
+    public class WeaponRepository : IWeaponRepository
+    {
+        private WeaponAccountingContext _context;
+        public WeaponRepository(WeaponAccountingContext context)
+        {
+            _context = context;
+        }
+        public ICollection<Weapon> GetWeapons()
+        {
+            return _context.Weapons.ToList();
+        }
+
+        public Weapon GetWeapon(int id)
+        {
+            return _context.Weapons.Where(e=> e.WeaponId == id).FirstOrDefault();
+        }
+        public bool WeaponExists(int id) 
+        { 
+            return _context.Weapons.Any(e=> e.WeaponId == id); 
+        }
+        public bool CreateWeapon(Weapon weapon) 
+        { 
+            _context.Add(weapon);
+            return Save(); 
+        }
+        public bool UpdateWeapon(Weapon weapon) 
+        { 
+            _context.Update(weapon);
+            return Save(); 
+        }
+        public bool DeleteWeapon(Weapon weapon) 
+        {  
+            _context.Remove(weapon);
+            return Save(); 
+        }
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+    }
+}
