@@ -12,7 +12,7 @@ public partial class WeaponAccountingContext : DbContext
     }
 
     public WeaponAccountingContext(DbContextOptions<WeaponAccountingContext> options)
-        : base(options)
+    : base(options)
     {
     }
 

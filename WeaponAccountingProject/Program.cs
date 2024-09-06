@@ -1,8 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using WeaponAccountingProject.Data;
+using WeaponAccountingProject.Interfaces;
+using WeaponAccountingProject.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IWeaponRepository, WeaponRepository>();
 
+builder.Services.AddDbContext<WeaponAccountingContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
