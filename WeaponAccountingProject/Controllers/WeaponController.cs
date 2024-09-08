@@ -14,7 +14,8 @@ namespace WeaponAccountingProject.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var weapons = _weaponRepository.GetWeapons();
+            return View(weapons);
         }
     }
 }
