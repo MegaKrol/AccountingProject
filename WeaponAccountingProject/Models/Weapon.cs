@@ -19,10 +19,12 @@ public partial class Weapon
     [StringLength(4)]
     [Unicode(false)]
     public string Year { get; set; } = null!;
+
     [StringLength(20)]
     [Unicode(false)]
-    public string RecordNumber { get; set; } = null!;
-    public int? CompletenessId { get; set; }
+    public string? RecordNumber { get; set; }
+
+    public int? SoldierId { get; set; }
 
     public int? LocationId { get; set; }
 
@@ -30,8 +32,11 @@ public partial class Weapon
     [InverseProperty("Weapons")]
     public virtual Location? Location { get; set; }
 
+    [ForeignKey("SoldierId")]
+    [InverseProperty("Weapons")]
+    public virtual Soldier? Soldier { get; set; }
+
     [ForeignKey("WeaponId")]
     [InverseProperty("Weapons")]
     public virtual ICollection<CompletenessItem> CompletenessItems { get; set; } = new List<CompletenessItem>();
-
 }

@@ -12,11 +12,12 @@ public partial class Location
     [Key]
     public int LocationId { get; set; }
 
-    [InverseProperty("Location")]
-    public virtual ICollection<Soldier> Soldiers { get; set; } = new List<Soldier>();
+    [StringLength(100)]
+    [Unicode(false)]
+    public string Name { get; set; } = null!;
 
     [InverseProperty("Location")]
-    public virtual Warehouse? Warehouse { get; set; }
+    public virtual ICollection<Soldier> Soldiers { get; set; } = new List<Soldier>();
 
     [InverseProperty("Location")]
     public virtual ICollection<Weapon> Weapons { get; set; } = new List<Weapon>();

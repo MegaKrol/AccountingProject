@@ -22,20 +22,18 @@
 
                 </td>
 
-                @* <td class="weapon-location">
-                    @if (item.LocationId == item.Location!.Warehouse!.LocationId)
+                <td class="weapon-location">
+                   @*  @Html.DisplayFor(modelItem => item.Location!.Name) *@
+@*                     @item.Name "Location not set" *@
+                    @if (item.Location != null)
                     {
-                        <div class="transaction-type-income">
-                            rrrrrrrr
-                        </div>
+                        @Html.DisplayFor(modelItem => item.Location.Name)
                     }
                     else
                     {
-                        <div class="transaction-type-expense">
-                           hhhhhhh
-                        </div>
-                    } 
-                </td> *@
+                        <span>No Location Available</span>
+                    }
+                </td> 
                 
                 <td class="buttons-cell">
                     <button type="button" class="btn btn-danger">

@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WeaponAccountingProject.Models;
 
-[PrimaryKey("SoldierId", "LocationId")]
 [Table("Soldier")]
 public partial class Soldier
 {
@@ -25,16 +24,12 @@ public partial class Soldier
     [Unicode(false)]
     public string Rank { get; set; } = null!;
 
-    [Key]
-    public int LocationId { get; set; }
-
-    public int? UnitId { get; set; }
+    public int? LocationId { get; set; }
 
     [ForeignKey("LocationId")]
     [InverseProperty("Soldiers")]
-    public virtual Location Location { get; set; } = null!;
+    public virtual Location? Location { get; set; }
 
-    [ForeignKey("UnitId")]
-    [InverseProperty("Soldiers")]
-    public virtual Unit? Unit { get; set; }
+    [InverseProperty("Soldier")]
+    public virtual ICollection<Weapon> Weapons { get; set; } = new List<Weapon>();
 }
