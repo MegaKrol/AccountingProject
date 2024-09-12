@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WeaponAccountingProject.Data;
 using WeaponAccountingProject.Interfaces;
+using WeaponAccountingProject.Models;
 
 namespace WeaponAccountingProject.Controllers
 {
@@ -15,7 +16,27 @@ namespace WeaponAccountingProject.Controllers
         public IActionResult Index()
         {
             var weapons = _weaponRepository.GetWeapons();
+            
             return View(weapons);
+        }
+        [HttpGet]
+        public Weapon GetWeapon(int id)
+        {
+            return _weaponRepository.GetWeapon(id);
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(Weapon weapon)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(weapon);
+            }
+            _weaponRepository.CreateWeapon(weapon);
+            return RedirectToAction("Index");
         }
     }
 }

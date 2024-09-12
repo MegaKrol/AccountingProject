@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Internal;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
+using System.Net;
 using WeaponAccountingProject.Data;
 using WeaponAccountingProject.Interfaces;
 using WeaponAccountingProject.Models;
@@ -14,7 +16,8 @@ namespace WeaponAccountingProject.Repository
         }
         public ICollection<Weapon> GetWeapons()
         {
-            return _context.Weapons.ToList();
+
+            return _context.Weapons.Include(w => w.Location).ToList();
         }
 
         public Weapon GetWeapon(int id)

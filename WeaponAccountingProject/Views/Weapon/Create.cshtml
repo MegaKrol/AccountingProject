@@ -1,0 +1,35 @@
+﻿@model Weapon
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form method="post" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name">Weapon name</label>
+        <input asp-for="Name" class="form-control" placeholder="Weapon name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RecordNumber">Record number</label>
+        <input asp-for="RecordNumber" class="form-control" placeholder="Record number">
+        <span asp-validation-for="RecordNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Year">Year</label>
+        <input asp-for="Year" class="form-control" placeholder="Year">
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+   @*  <div class="form-group">
+        <label asp-for="Year">Year</label>
+        <input asp-for="Year" class="form-control" placeholder="Year">
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div> *@
+    <div class="form-group">
+        <label asp-for="Location.Name">Location</label>
+        <input asp-for="Location.Name" class="form-control" placeholder="Location">
+        <span asp-validation-for="Location.Name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -25,9 +25,9 @@
                 <td class="weapon-location">
                    @*  @Html.DisplayFor(modelItem => item.Location!.Name) *@
 @*                     @item.Name "Location not set" *@
-                    @if (item.Location != null)
+                    @if (item.LocationId != null)
                     {
-                        @Html.DisplayFor(modelItem => item.Location.Name)
+                        @Html.DisplayFor(modelItem => item.Location.Name) 
                     }
                     else
                     {
