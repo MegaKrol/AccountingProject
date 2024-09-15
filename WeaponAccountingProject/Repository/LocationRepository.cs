@@ -12,7 +12,7 @@ namespace WeaponAccountingProject.Repository
             _context = context;
         }
 
-        public ICollection<Location> GetLocations()
+        public ICollection<Location> GetAllLocations()
         {
             return _context.Locations.ToList();
         }

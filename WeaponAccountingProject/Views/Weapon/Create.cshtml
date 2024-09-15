@@ -1,7 +1,6 @@
-﻿@model Weapon
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using WeaponAccountingProject.Data;
+@using WeaponAccountingProject.ViewModels;
+@model CreateWeaponViewModel;
 @{
 }
 
@@ -21,15 +20,19 @@
         <input asp-for="Year" class="form-control" placeholder="Year">
         <span asp-validation-for="Year" class="text-danger"></span>
     </div>
-   @*  <div class="form-group">
-        <label asp-for="Year">Year</label>
-        <input asp-for="Year" class="form-control" placeholder="Year">
-        <span asp-validation-for="Year" class="text-danger"></span>
-    </div> *@
-    <div class="form-group">
+    @* <div class="form-group">
         <label asp-for="Location.Name">Location</label>
         <input asp-for="Location.Name" class="form-control" placeholder="Location">
         <span asp-validation-for="Location.Name" class="text-danger"></span>
+    </div> *@
+    <div class="form-group">
+        <label asp-for="LocationId" class="control-label">Location</label>
+        <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
+            <option value="">-- Select Location --</option> <!-- Optional placeholder -->
+        </select>
+        <span asp-validation-for="LocationId" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+    <a type="button" class="nav-link text-dark" asp-area="" asp-controller="Weapon" asp-action="Index">Back to weapons</a>
+
 </form>

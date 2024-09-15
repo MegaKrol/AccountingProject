@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WeaponAccountingProject.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WeaponAccountingProject.Data;
 using WeaponAccountingProject.Interfaces;
 using WeaponAccountingProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WeaponAccountingProject.Controllers
 {
@@ -19,23 +22,46 @@ namespace WeaponAccountingProject.Controllers
             
             return View(weapons);
         }
+
         [HttpGet]
         public Weapon GetWeapon(int id)
         {
             return _weaponRepository.GetWeapon(id);
         }
+
+        [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var createWeaponViewModel = new CreateWeaponViewModel();
+            ViewData["Locations"] = new SelectList(_weaponRepository.GetAllLocations(), "LocationId", "Name");
+
+            return View(createWeaponViewModel);
         }
+
         [HttpPost]
-        public async Task<IActionResult> Create(Weapon weapon)
+        public async Task<IActionResult> Create(CreateWeaponViewModel createWeaponVM)
         {
-            if(!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(weapon);
+                var weapon = new Weapon
+                {
+                    Name = createWeaponVM.Name,
+                    RecordNumber = createWeaponVM.RecordNumber,
+                    Year = createWeaponVM.Year,
+                    LocationId = createWeaponVM.LocationId
+                };
+                _weaponRepository.CreateWeapon(weapon);
+                return RedirectToAction("Index");
             }
-            _weaponRepository.CreateWeapon(weapon);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult Delete(int id)
+        {
+            _weaponRepository.DeleteWeapon(GetWeapon(id));
+
             return RedirectToAction("Index");
         }
     }

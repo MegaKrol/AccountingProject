@@ -31,6 +31,7 @@ namespace WeaponAccountingProject.Repository
         public bool CreateWeapon(Weapon weapon) 
         { 
             _context.Add(weapon);
+            
             return Save(); 
         }
         public bool UpdateWeapon(Weapon weapon) 
@@ -47,6 +48,11 @@ namespace WeaponAccountingProject.Repository
         {
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
+        }
+
+        public ICollection<Location> GetAllLocations()
+        {
+            return _context.Locations.ToList();
         }
     }
 }

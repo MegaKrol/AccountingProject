@@ -4,6 +4,6 @@ namespace WeaponAccountingProject.Interfaces
 {
     public interface ILocationRepository
     {
-        ICollection<Location> GetLocations();
+        ICollection<Location> GetAllLocations();
     }
 }

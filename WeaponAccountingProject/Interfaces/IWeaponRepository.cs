@@ -10,6 +10,7 @@ namespace WeaponAccountingProject.Interfaces
         bool CreateWeapon(Weapon weapon);
         bool UpdateWeapon(Weapon weapon);
         bool DeleteWeapon(Weapon weapon);
+        ICollection<Location> GetAllLocations();
         bool Save();
     }
 }
