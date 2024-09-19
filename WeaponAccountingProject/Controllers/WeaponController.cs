@@ -57,6 +57,44 @@ namespace WeaponAccountingProject.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var weapon = _weaponRepository.GetWeapon(id);
+            if(weapon == null) return View("Error");
+
+            ViewData["Locations"] = new SelectList(_weaponRepository.GetAllLocations(), "LocationId", "Name");
+            var editWeaponViewModel = new EditWeaponViewModel
+            {
+                WeaponId = weapon.WeaponId,
+                Name = weapon.Name,
+                RecordNumber = weapon.RecordNumber,
+                Year = weapon.Year,
+                LocationId = weapon.LocationId
+            };
+            return View(editWeaponViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditWeaponViewModel editWeaponVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var weapon = new Weapon
+                {
+                    WeaponId = editWeaponVM.WeaponId,
+                    Name = editWeaponVM.Name,
+                    RecordNumber = editWeaponVM.RecordNumber,
+                    Year = editWeaponVM.Year,
+                    LocationId = editWeaponVM.LocationId
+                };
+                _weaponRepository.UpdateWeapon(weapon);
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Failed to edit weapon");
+            return RedirectToAction("Edit", editWeaponVM);
+        }
+
         [HttpPost, ActionName("Delete")]
         public IActionResult Delete(int id)
         {
