@@ -28,6 +28,8 @@ public partial class Weapon
 
     public int? LocationId { get; set; }
 
+    public int Value { get; set; }
+
     [ForeignKey("LocationId")]
     [InverseProperty("Weapons")]
     public virtual Location? Location { get; set; }

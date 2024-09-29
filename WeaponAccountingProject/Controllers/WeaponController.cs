@@ -48,7 +48,8 @@ namespace WeaponAccountingProject.Controllers
                     Name = createWeaponVM.Name,
                     RecordNumber = createWeaponVM.RecordNumber,
                     Year = createWeaponVM.Year,
-                    LocationId = createWeaponVM.LocationId
+                    LocationId = createWeaponVM.LocationId,
+                    Value = createWeaponVM.Value
                 };
                 _weaponRepository.CreateWeapon(weapon);
                 return RedirectToAction("Index");
@@ -70,7 +71,8 @@ namespace WeaponAccountingProject.Controllers
                 Name = weapon.Name,
                 RecordNumber = weapon.RecordNumber,
                 Year = weapon.Year,
-                LocationId = weapon.LocationId
+                LocationId = weapon.LocationId,
+                Value = weapon.Value
             };
             return View(editWeaponViewModel);
         }
@@ -86,7 +88,8 @@ namespace WeaponAccountingProject.Controllers
                     Name = editWeaponVM.Name,
                     RecordNumber = editWeaponVM.RecordNumber,
                     Year = editWeaponVM.Year,
-                    LocationId = editWeaponVM.LocationId
+                    LocationId = editWeaponVM.LocationId,
+                    Value = editWeaponVM.Value
                 };
                 _weaponRepository.UpdateWeapon(weapon);
                 return RedirectToAction("Index");
