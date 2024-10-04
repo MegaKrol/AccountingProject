@@ -13,7 +13,6 @@ public partial class Weapon
     public int WeaponId { get; set; }
 
     [StringLength(50)]
-    [Unicode(false)]
     public string Name { get; set; } = null!;
 
     [StringLength(4)]
@@ -21,14 +20,14 @@ public partial class Weapon
     public string Year { get; set; } = null!;
 
     [StringLength(20)]
-    [Unicode(false)]
-    public string? RecordNumber { get; set; }
+    public string RecordNumber { get; set; } = null!;
 
     public int? SoldierId { get; set; }
 
     public int? LocationId { get; set; }
 
-    public int Value { get; set; }
+    [Column(TypeName = "decimal(10, 2)")]
+    public decimal Value { get; set; }
 
     [ForeignKey("LocationId")]
     [InverseProperty("Weapons")]

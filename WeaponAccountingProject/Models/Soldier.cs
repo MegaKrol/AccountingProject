@@ -13,15 +13,12 @@ public partial class Soldier
     public int SoldierId { get; set; }
 
     [StringLength(100)]
-    [Unicode(false)]
     public string Name { get; set; } = null!;
 
     [StringLength(50)]
-    [Unicode(false)]
     public string Post { get; set; } = null!;
 
     [StringLength(30)]
-    [Unicode(false)]
     public string Rank { get; set; } = null!;
 
     public int? LocationId { get; set; }

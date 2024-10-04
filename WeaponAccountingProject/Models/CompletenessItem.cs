@@ -13,7 +13,6 @@ public partial class CompletenessItem
     public int CompletenessItemId { get; set; }
 
     [StringLength(100)]
-    [Unicode(false)]
     public string Name { get; set; } = null!;
 
     [ForeignKey("CompletenessItemId")]

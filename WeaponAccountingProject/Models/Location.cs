@@ -13,7 +13,6 @@ public partial class Location
     public int LocationId { get; set; }
 
     [StringLength(100)]
-    [Unicode(false)]
     public string Name { get; set; } = null!;
 
     [InverseProperty("Location")]
