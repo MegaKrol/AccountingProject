@@ -1,0 +1,107 @@
+﻿@model System.String
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form method="post" enctype="multipart/form-data" asp-controller="FileReader" asp-action="Index">
+    <div class="row">
+        <input type="file" name="file" />
+        <div class="row" style="padding-top: 10px;">
+            <div class="col-3">
+                <button type="submit">Upload File</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <table class="table">
+            <thead>
+                <tr>
+                    @if (ViewBag.Data != null && ViewBag.Data.Count > 0)
+                    {
+                        @foreach (var header in ViewBag.Data[0])
+                        {
+                            <th>@header</th>
+                        }
+                    }
+                </tr>
+            </thead>
+        <tbody>
+            @if (ViewBag.Data != null && ViewBag.Data.Count > 1)
+            {
+                @for(int i = 1; i < ViewBag.Data.Count; ++i)
+                {
+                    <tr>
+                        @foreach(var cell in ViewBag.Data[i])
+                        {
+                            <td >@cell</td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+@* /table>
+    <table id="weapons" class="table">
+        <tr>
+            @if (ViewBag.Data != null && ViewBag.Data.Count > 0)
+            {
+                @foreach (var header in ViewBag.Data[0])
+                {
+                    <th>@header</th>
+                }
+            }
+        </tr>
+            <tbody>
+            @if (ViewBag.Data != null && ViewBag.Data.Count > 1)
+            {
+                @for (int i = 1; i < ViewBag.Data.Count; ++i)
+                {
+                    <tr>
+                        @foreach (var cell in ViewBag.Data[i])
+                        {
+                            <td>@cell</td>
+                        }
+                    </tr>
+                }
+            }
+                @foreach (var item in Model)
+                {
+                    <tr class="list-row">
+                        <td class="weapon-cell">
+
+                            <div class="weapon-number">
+                                @Html.DisplayFor(modelItem => item.RecordNumber)
+                            </div>
+
+                            <div class="weapon-name">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </div>
+
+                            <div class="weapon-year">
+                                @Html.DisplayFor(modelItem => item.Year)
+                            </div>
+
+                            <div class="weapon-value">
+                                @Html.DisplayFor(modelItem => item.Value)
+                            </div>
+
+                        </td>
+
+                        <td class="weapon-location">
+                            @if (item.LocationId != null)
+                            {
+                                @Html.DisplayFor(modelItem => item.Location.Name)
+                            }
+                            else
+                            {
+                                <span>No Location Available</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table> *@
+</div>

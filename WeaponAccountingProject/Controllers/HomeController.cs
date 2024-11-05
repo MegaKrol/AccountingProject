@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WeaponAccountingProject.Models;
+using WeaponAccountingProject.ViewModels;
 
 namespace WeaponAccountingProject.Controllers
 {

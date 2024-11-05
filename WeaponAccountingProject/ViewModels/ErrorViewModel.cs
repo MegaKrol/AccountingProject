@@ -1,4 +1,4 @@
-namespace WeaponAccountingProject.Models
+namespace WeaponAccountingProject.ViewModels
 {
     public class ErrorViewModel
     {
