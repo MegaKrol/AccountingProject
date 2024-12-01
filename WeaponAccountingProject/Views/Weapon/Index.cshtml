@@ -1,10 +1,21 @@
-﻿@model ICollection<Weapon>
+﻿@using static WeaponAccountingProject.Repository.WeaponRepository
+@model ICollection<Weapon>
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 <a class="nav-link text-dark" asp-area="" asp-controller="Weapon" asp-action="Create">Add new weapon</a>
+
+<div class="dropdown" style="float:right">
+    <form method="get">
+        <label for="sortMenuId">Виберіть спосіб сортування:</label>
+        <select asp-items="Html.GetEnumSelectList<WeaponSortField>()" name="sortField" id="sortMenuId" onselect="arguments">
+        </select>
+        <input type="submit" value="Сортувати"></input>
+    </form>
+</div>
+
 
 <table id="weapons" class="table">
     <tbody>

@@ -9,6 +9,13 @@ namespace WeaponAccountingProject.Repository
 {
     public class WeaponRepository : IWeaponRepository
     {
+        public enum WeaponSortField
+        {
+            Name,
+            Value,
+            RecordNumber,
+            Year
+        }
         private WeaponAccountingContext _context;
         public WeaponRepository(WeaponAccountingContext context)
         {
@@ -16,13 +23,31 @@ namespace WeaponAccountingProject.Repository
         }
         public ICollection<Weapon> GetWeapons()
         {
-
             return _context.Weapons.Include(w => w.Location).ToList();
         }
 
         public Weapon GetWeapon(int id)
         {
             return _context.Weapons.Where(e=> e.WeaponId == id).FirstOrDefault();
+        }
+        public ICollection<Weapon> SortAllWeapons(WeaponSortField sortField)
+        {
+            switch(sortField)
+            {
+                case WeaponSortField.Name:
+                    return _context.Weapons.Include(w => w.Location).OrderBy(w => w.Name).ToList();
+
+                case WeaponSortField.Value:
+                    return _context.Weapons.Include(w => w.Location).OrderBy(w => w.Value).ToList();
+
+                case WeaponSortField.RecordNumber:
+                    return _context.Weapons.Include(w => w.Location).OrderBy(w => w.RecordNumber).ToList();
+                
+                case WeaponSortField.Year:
+                    return _context.Weapons.Include(w => w.Location).OrderBy(w => w.Year).ToList();
+                default:
+                    return GetWeapons();
+            }
         }
         public bool WeaponExists(int id) 
         { 
@@ -54,5 +79,16 @@ namespace WeaponAccountingProject.Repository
         {
             return _context.Locations.ToList();
         }
+        //public ICollection<Weapon> GetWeapons(WeaponSortField field = WeaponSortField.Name, bool direction = true) //поле сортування enum
+        //{
+        //    //var q = _context.Weapons.AsQueryable();
+        //    //switch(field)
+        //    //{
+        //    //    case WeaponSortField.Name:
+        //    //        q = direction ? q.OrderBy(w => w.Name) : q.OrderByDescending(w => w.Name); 
+        //    //        break;
+        //    //}
+        //    //return q.Include(w => w.Location).ToList();
+        //}
     }
 }

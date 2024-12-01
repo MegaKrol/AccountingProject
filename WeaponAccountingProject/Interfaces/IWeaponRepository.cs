@@ -1,4 +1,5 @@
 ﻿using WeaponAccountingProject.Models;
+using static WeaponAccountingProject.Repository.WeaponRepository;
 
 namespace WeaponAccountingProject.Interfaces
 {
@@ -10,6 +11,7 @@ namespace WeaponAccountingProject.Interfaces
         bool CreateWeapon(Weapon weapon);
         bool UpdateWeapon(Weapon weapon);
         bool DeleteWeapon(Weapon weapon);
+        ICollection<Weapon> SortAllWeapons(WeaponSortField sortField);
         ICollection<Location> GetAllLocations();
         bool Save();
     }

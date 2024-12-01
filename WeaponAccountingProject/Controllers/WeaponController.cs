@@ -5,6 +5,7 @@ using WeaponAccountingProject.Data;
 using WeaponAccountingProject.Interfaces;
 using WeaponAccountingProject.Models;
 using Microsoft.EntityFrameworkCore;
+using static WeaponAccountingProject.Repository.WeaponRepository;
 
 namespace WeaponAccountingProject.Controllers
 {
@@ -16,9 +17,9 @@ namespace WeaponAccountingProject.Controllers
             _weaponRepository = weaponRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(WeaponSortField sortField = WeaponSortField.Name)
         {
-            var weapons = _weaponRepository.GetWeapons();
+            var weapons = _weaponRepository.SortAllWeapons(sortField); //SortAllWeapons();
             
             return View(weapons);
         }
@@ -105,5 +106,12 @@ namespace WeaponAccountingProject.Controllers
 
             return RedirectToAction("Index");
         }
+        //[HttpPost]
+        //public IActionResult Sort( sortMenu)
+        //{
+        //    var weapons = _weaponRepository.SortAllWeapons(sortfield);
+
+        //    return View(weapons);
+        //}
     }
 }

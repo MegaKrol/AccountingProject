@@ -30,3 +30,10 @@ public partial class Soldier
     [InverseProperty("Soldier")]
     public virtual ICollection<Weapon> Weapons { get; set; } = new List<Weapon>();
 }
+
+[Table("Officer")]
+public class Officer : Soldier
+{
+    public ICollection<Soldier> soldiersOnDuty { get; set; }
+    public ICollection<Location> locationsOnDuty { get; set; }
+}

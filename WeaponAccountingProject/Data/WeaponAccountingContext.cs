@@ -24,6 +24,7 @@ public partial class WeaponAccountingContext : DbContext
 
     public virtual DbSet<Weapon> Weapons { get; set; }
 
+    public virtual DbSet<Officer> Officers { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<CompletenessItem>(entity =>
