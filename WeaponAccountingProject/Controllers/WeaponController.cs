@@ -20,7 +20,11 @@ namespace WeaponAccountingProject.Controllers
         public IActionResult Index(WeaponSortField sortField = WeaponSortField.Name)
         {
             var weapons = _weaponRepository.SortAllWeapons(sortField); //SortAllWeapons();
-            
+
+            //var result = weapons.GroupBy(w => w.Name, w => w.WeaponId, 
+            //                            (key, w) => new { Names = key, WeaponCount = w.Count()})
+            //                            .OrderByDescending(w => w.WeaponCount).FirstOrDefault();
+
             return View(weapons);
         }
 
@@ -60,12 +64,14 @@ namespace WeaponAccountingProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var weapon = _weaponRepository.GetWeapon(id);
+            var weapon = await _weaponRepository.GetWeaponAsync(id);
             if(weapon == null) return View("Error");
 
-            ViewData["Locations"] = new SelectList(_weaponRepository.GetAllLocations(), "LocationId", "Name");
+            //ViewData["Locations"] = new SelectList(_weaponRepository.GetAllLocations(), "LocationId", "Name");
+            ViewData["Locations"] = new SelectList(await _weaponRepository.GetAllLocationsAsync(), "LocationId", "Name");
+
             var editWeaponViewModel = new EditWeaponViewModel
             {
                 WeaponId = weapon.WeaponId,

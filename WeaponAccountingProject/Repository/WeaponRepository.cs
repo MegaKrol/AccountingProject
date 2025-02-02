@@ -16,10 +16,22 @@ namespace WeaponAccountingProject.Repository
             RecordNumber,
             Year
         }
+        public enum WeaponStatisticField
+        {
+            Name,
+            Value,
+            RecordNumber,
+            Year,
+            Count
+        }
         private WeaponAccountingContext _context;
         public WeaponRepository(WeaponAccountingContext context)
         {
             _context = context;
+        }
+        public async Task<ICollection<Weapon>> GetWeaponsAsync()
+        {
+            return await _context.Weapons.Include(w => w.Location).ToListAsync();
         }
         public ICollection<Weapon> GetWeapons()
         {
@@ -29,6 +41,10 @@ namespace WeaponAccountingProject.Repository
         public Weapon GetWeapon(int id)
         {
             return _context.Weapons.Where(e=> e.WeaponId == id).FirstOrDefault();
+        }
+        public async Task<Weapon> GetWeaponAsync(int id)
+        {
+            return await _context.Weapons.Where(e => e.WeaponId == id).FirstOrDefaultAsync();
         }
         public ICollection<Weapon> SortAllWeapons(WeaponSortField sortField)
         {
@@ -49,9 +65,14 @@ namespace WeaponAccountingProject.Repository
                     return GetWeapons();
             }
         }
+        
         public bool WeaponExists(int id) 
         { 
             return _context.Weapons.Any(e=> e.WeaponId == id); 
+        }
+        public async Task<bool> WeaponExistsAsync(int id)
+        {
+            return await _context.Weapons.AnyAsync(e => e.WeaponId == id);
         }
         public bool CreateWeapon(Weapon weapon) 
         { 
@@ -79,6 +100,11 @@ namespace WeaponAccountingProject.Repository
         {
             return _context.Locations.ToList();
         }
+        public async Task<ICollection<Location>> GetAllLocationsAsync()
+        {
+            return await _context.Locations.ToListAsync();
+        }
+
         //public ICollection<Weapon> GetWeapons(WeaponSortField field = WeaponSortField.Name, bool direction = true) //поле сортування enum
         //{
         //    //var q = _context.Weapons.AsQueryable();

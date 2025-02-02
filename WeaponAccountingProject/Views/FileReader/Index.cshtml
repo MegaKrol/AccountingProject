@@ -15,33 +15,35 @@
     </div>
 </form>
 <div>
-    <table class="table">
-            <thead>
-                <tr>
-                    @if (ViewBag.Data != null && ViewBag.Data.Count > 0)
-                    {
-                        @foreach (var header in ViewBag.Data[0])
-                        {
-                            <th>@header</th>
-                        }
-                    }
-                </tr>
-            </thead>
-        <tbody>
-            @if (ViewBag.Data != null && ViewBag.Data.Count > 1)
-            {
-                @for(int i = 1; i < ViewBag.Data.Count; ++i)
-                {
+    <div style="height:auto;width:auto;overflow:scroll;">
+        <table class="table">
+                <thead>
                     <tr>
-                        @foreach(var cell in ViewBag.Data[i])
+                        @if (ViewBag.Data != null && ViewBag.Data.Count > 0)
                         {
-                            <td >@cell</td>
+                            @foreach (var header in ViewBag.Data[0])
+                            {
+                                <th>@header</th>
+                            }
                         }
                     </tr>
+                </thead>
+            <tbody>
+                @if (ViewBag.Data != null && ViewBag.Data.Count > 1)
+                {
+                    @for(int i = 1; i < ViewBag.Data.Count; ++i)
+                    {
+                        <tr>
+                            @foreach(var cell in ViewBag.Data[i])
+                            {
+                                <td >@cell</td>
+                            }
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
 @* /table>
     <table id="weapons" class="table">
