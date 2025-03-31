@@ -7,13 +7,23 @@ using WeaponAccountingProject.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using System.Security.AccessControl;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using WeaponAccountingProject.Interfaces;
 
 namespace WeaponAccountingProject.Controllers
 {
     public class FileReaderController : Controller
     {
+        private List<List<String>> _fileData;
+        private readonly IWeaponRepository _weaponRepository;
+        public FileReaderController(IWeaponRepository weaponRepository)
+        {
+            _weaponRepository = weaponRepository;
+        }
         public IActionResult Index()
         {
+            ViewData["Locations"] = new SelectList(_weaponRepository.GetAllLocations(), "LocationId", "Name");
+            //ViewBag.Data = _fileData;
             return View();
         }
 
@@ -35,8 +45,10 @@ namespace WeaponAccountingProject.Controllers
 
                     Data.Add(values);
                 }
-
+                _fileData = Data;
                 ViewBag.Data = Data;
+
+                ViewData["Locations"] = new SelectList(_weaponRepository.GetAllLocations(), "LocationId", "Name");
                 return View();
             }
         }

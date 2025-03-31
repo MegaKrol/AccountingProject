@@ -112,12 +112,5 @@ namespace WeaponAccountingProject.Controllers
 
             return RedirectToAction("Index");
         }
-        //[HttpPost]
-        //public IActionResult Sort( sortMenu)
-        //{
-        //    var weapons = _weaponRepository.SortAllWeapons(sortfield);
-
-        //    return View(weapons);
-        //}
     }
 }
