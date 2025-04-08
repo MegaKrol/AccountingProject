@@ -1,8 +1,40 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<body class="text-center">
+    <div class="grid-container">
+    <header>
+        <h1 class="display-4">Welcome to weapon accounting application</h1>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        <p>
+            Please, read our privacy rules - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </p>
+    </header>
+
+    <aside id="left-menu" class="home-left-menu">
+        <h3>FAQ</h3>
+        <ul>
+            <li><a href="#">How to use this site?</a></li>
+            <li><a href="#">Make local database!</a></li>
+            <li><a href="#">Upload weapons from exel</a></li>
+            <li><a href="#">PDF reports</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <p class="home-main-text">
+            <div class="item">
+                    <img src="~/Stock/Logo.jpeg" alt="Logo"/>
+            </div>
+            The Weapon Accounting System is a powerful and user-friendly tool designed for managing weapon inventory efficiently. It provides a streamlined approach to tracking and organizing weapons with the following key features:
+            <ul>
+                <li>Add & Delete Weapons – Easily register new weapons or remove outdated entries.</li>
+                <li>Import from File – Bulk add weapons from structured files, saving time and effort.</li>
+                <li>Generate PDF Reports – Create detailed reports on weapon inventory for documentation and compliance.</li>
+            </ul>
+            This system ensures accuracy, efficiency, and secure management of weapon records, making it ideal for organizations that require structured weapon tracking.
+            Let`s fight paper army back!
+        </p>
+    </main>
+    </div>
+</body>

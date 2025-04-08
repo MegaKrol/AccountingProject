@@ -20,3 +20,123 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.grid-container {
+    display: grid;
+    margin-left: 5px;
+    grid-template-columns: 1.15fr 5fr;
+    grid-template-rows: 0.5fr 5fr 50px;
+    grid-template-areas:
+        "aside header"
+        "aside content"
+        "footer footer"
+}
+
+.container{
+    margin-left: 5px;
+    padding: 5px;
+    max-width: 100%;
+}
+
+.grid-container-weapons {
+    display: grid;
+    grid-template-rows: 0.5fr 5fr 50px;
+    grid-template-areas:
+        "w-ul"
+        "table"
+        "footer"
+}
+
+.weapon-menu-buttons {
+    grid-area: w-ul;
+    list-style-type: none;
+    padding: 0;
+}
+
+.weapon-menu-buttons li {
+    display:table-cell;
+    margin-right: 100px;
+    background-color:grey;
+    padding: 5px;
+}
+
+.weapon-menu-buttons li a{
+    
+    background-color: Background;
+    margin-left: auto;
+    margin-right: 100px;
+    padding: 5px;
+}
+
+.nav-link-text-dark{
+    background-color:aqua;
+}
+
+header {
+    grid-area: header;
+    text-align: center;
+    line-height: 100px;
+}
+
+.privacy-header
+{
+    margin: 10px;
+}
+
+aside {
+    grid-area: aside;
+    background-color: #999999;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+aside ul li{
+    text-align:left
+}
+
+main{
+    grid-area: content;
+    background-color: white;
+    text-align:justify-all;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    div.item
+    {
+        flex-basis: 100%; 
+        margin: 10px 0; 
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 100px auto auto 50px;
+        grid-template-areas:
+            "header"
+            "aside"
+            "content"
+            "footer"
+    }
+}
+
+.home-main-text{
+    text-align: justify;
+
+}
+
+footer
+{
+    grid-area: footer;
+    text-align: left;
+    line-height: 50px;
+}
+
+div.item img
+{
+    width: auto;
+    height: auto;
+    margin-bottom: 10px;
+}
+
