@@ -28,4 +28,11 @@
     <None Include="wwwroot\Stock\Logo.jpeg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\FileReader\showWeaponInformation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

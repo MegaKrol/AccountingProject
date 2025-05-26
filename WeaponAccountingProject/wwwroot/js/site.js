@@ -31,3 +31,22 @@ document.querySelectorAll('.btnOpenWeaponInfoModal').forEach(function (button) {
     });
 });
 
+document.querySelectorAll('.btnOpenWeaponInfoModalFile').forEach(button => {
+    button.addEventListener('click', function () {
+        const recordNumber = this.getAttribute('data-recordnumber') || '';
+        const name = this.getAttribute('data-name') || '';
+        const year = this.getAttribute('data-year') || '';
+        const value = this.getAttribute('data-value') || '';
+        const location = this.getAttribute('data-location') || 'No Location Available';
+
+
+        document.getElementById('modalWeaponRecordNumber').textContent = recordNumber;
+        document.getElementById('modalWeaponName').textContent = name;
+        document.getElementById('modalWeaponYear').textContent = year + ' рік';
+        document.getElementById('modalWeaponValue').textContent = value;
+        document.getElementById('modalWeaponLocationName').textContent = location;
+
+        const modal = new bootstrap.Modal(document.getElementById('showWeaponModal'));
+        modal.show();
+    });
+});
