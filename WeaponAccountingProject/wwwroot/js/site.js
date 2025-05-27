@@ -50,3 +50,14 @@ document.querySelectorAll('.btnOpenWeaponInfoModalFile').forEach(button => {
         modal.show();
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("table").addEventListener("click", function (e) {
+        if (e.target.closest(".btn-delete-row")) {
+            const row = e.target.closest("tr");
+            if (row && confirm("Are you sure you want to delete this row?")) {
+                row.remove();
+            }
+        }
+    });
+});
